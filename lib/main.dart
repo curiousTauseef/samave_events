@@ -1,196 +1,110 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-enum _ReorderableListType {
-  /// A list tile that contains a [CircleAvatar].
-  horizontalAvatar,
+void main() => runApp(new MyApp());
 
-  /// A list tile that contains a [CircleAvatar].
-  verticalAvatar,
-
-  /// A list tile that contains three lines of text and a checkbox.
-  threeLine,
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Flutter Demo',
+      theme: new ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
+        // counter didn't reset back to zero; the application is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
 }
 
-class ReorderableListDemo extends StatefulWidget {
-  const ReorderableListDemo({ Key key }) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  static const String routeName = '/material/reorderable-list';
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
 
   @override
-  _ListDemoState createState() => _ListDemoState();
+  _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _ListItem {
-  _ListItem(this.value, this.checkState);
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
 
-  final String value;
-
-  bool checkState;
-}
-
-class _ListDemoState extends State<ReorderableListDemo> {
-  static final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-  PersistentBottomSheetController<Null> _bottomSheet;
-  _ReorderableListType _itemType = _ReorderableListType.threeLine;
-  bool _reverseSort = false;
-  final List<_ListItem> _items = <String>[
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-  ].map((String item) => _ListItem(item, false)).toList();
-
-  void changeItemType(_ReorderableListType type) {
+  void _incrementCounter() {
     setState(() {
-      _itemType = type;
-    });
-    // Rebuild the bottom sheet to reflect the selected list view.
-    _bottomSheet?.setState(() { });
-    // Close the bottom sheet to give the user a clear view of the list.
-    _bottomSheet?.close();
-  }
-
-  void _showConfigurationSheet() {
-    setState(() {
-      _bottomSheet = scaffoldKey.currentState.showBottomSheet((BuildContext bottomSheetContext) {
-        return DecoratedBox(
-          decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: Colors.black26)),
-          ),
-          child: ListView(
-            shrinkWrap: true,
-            primary: false,
-            children: <Widget>[
-              RadioListTile<_ReorderableListType>(
-                dense: true,
-                title: const Text('Horizontal Avatars'),
-                value: _ReorderableListType.horizontalAvatar,
-                groupValue: _itemType,
-                onChanged: changeItemType,
-              ),
-              RadioListTile<_ReorderableListType>(
-                dense: true,
-                title: const Text('Vertical Avatars'),
-                value: _ReorderableListType.verticalAvatar,
-                groupValue: _itemType,
-                onChanged: changeItemType,
-              ),
-              RadioListTile<_ReorderableListType>(
-                dense: true,
-                title: const Text('Three-line'),
-                value: _ReorderableListType.threeLine,
-                groupValue: _itemType,
-                onChanged: changeItemType,
-              ),
-            ],
-          ),
-        );
-      });
-
-      // Garbage collect the bottom sheet when it closes.
-      _bottomSheet.closed.whenComplete(() {
-        if (mounted) {
-          setState(() {
-            _bottomSheet = null;
-          });
-        }
-      });
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
     });
   }
-
-  Widget buildListTile(_ListItem item) {
-    const Widget secondary = Text(
-      'Even more additional list item information appears on line three.',
-    );
-    Widget listTile;
-    switch (_itemType) {
-      case _ReorderableListType.threeLine:
-        listTile = CheckboxListTile(
-          key: Key(item.value),
-          isThreeLine: true,
-          value: item.checkState ?? false,
-          onChanged: (bool newValue) {
-            setState(() {
-              item.checkState = newValue;
-            });
-          },
-          title: Text('This item represents ${item.value}.'),
-          subtitle: secondary,
-          secondary: const Icon(Icons.drag_handle),
-        );
-        break;
-      case _ReorderableListType.horizontalAvatar:
-      case _ReorderableListType.verticalAvatar:
-        listTile = Container(
-          key: Key(item.value),
-          height: 100.0,
-          width: 100.0,
-          child: CircleAvatar(child: Text(item.value),
-            backgroundColor: Colors.green,
-          ),
-        );
-        break;
-    }
-
-    return listTile;
-  }
-
-  void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      if (newIndex > oldIndex) {
-        newIndex -= 1;
-      }
-      final _ListItem item = _items.removeAt(oldIndex);
-      _items.insert(newIndex, item);
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        title: const Text('Reorderable list'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.sort_by_alpha),
-            tooltip: 'Sort',
-            onPressed: () {
-              setState(() {
-                _reverseSort = !_reverseSort;
-                _items.sort((_ListItem a, _ListItem b) => _reverseSort ? b.value.compareTo(a.value) : a.value.compareTo(b.value));
-              });
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Theme.of(context).platform == TargetPlatform.iOS
-                  ? Icons.more_horiz
-                  : Icons.more_vert,
-            ),
-            tooltip: 'Show menu',
-            onPressed: _bottomSheet == null ? _showConfigurationSheet : null,
-          ),
-        ],
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    Re
+    return new Scaffold(
+      appBar: new AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: new Text(widget.title),
       ),
-      body: Scrollbar(
-        child: ReorderableListView(
-          header: _itemType != _ReorderableListType.threeLine
-              ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Header of the list', style: Theme.of(context).textTheme.headline))
-              : null,
-          onReorder: _onReorder,
-          scrollDirection: _itemType == _ReorderableListType.horizontalAvatar ? Axis.horizontal : Axis.vertical,
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          children: _items.map(buildListTile).toList(),
+      body: new Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: new Column(
+          // Column is also layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug paint" (press "p" in the console where you ran
+          // "flutter run", or select "Toggle Debug Paint" from the Flutter tool
+          // window in IntelliJ) to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text(
+              'You have pushed the button this many times:',
+            ),
+            new Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ],
         ),
       ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
