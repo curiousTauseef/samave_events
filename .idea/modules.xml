@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/samave_events.iml" filepath="$PROJECT_DIR$/samave_events.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samave_events_android.iml" filepath="$PROJECT_DIR$/samave_events_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/samave_events.iml" filepath="$PROJECT_DIR$/.idea/samave_events.iml" />
     </modules>
   </component>
 </project>
