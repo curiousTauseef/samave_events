@@ -466,6 +466,7 @@ class _MyListDemoState extends State<MyHomePage> {
   bool _reverseSort = false;
   final List<_ListItem> _items = <String>[
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
   ].map((String item) => new _ListItem('Event '+item, false)).toList();
 
   void changeItemType(_ReorderableListType type) {
@@ -535,7 +536,7 @@ class _MyListDemoState extends State<MyHomePage> {
       case _ReorderableListType.threeLine:
         //listTile = new GridTile() ;
         listTile = //const Icon(Icons.drag_handle),
-        ///*
+        /*
         new CheckboxListTile(
           key: new Key(item.value),
           isThreeLine: true,
@@ -545,14 +546,46 @@ class _MyListDemoState extends State<MyHomePage> {
               item.checkState = newValue;
             });
           },
-        //*/
-        /*
+        */
+          ///*
         new ListTile(
           key: new Key(item.value),
           isThreeLine: true,
-          leading: new Text('a'),
-        */
-          title: new Text('This item represents ${item.value}.'),
+          leading:
+          new Column(
+            children: [
+              new Text('07:00', style: new TextStyle(color: Colors.blue.withOpacity(0.9), fontWeight: FontWeight.bold)),
+              new Text('08:30', style: new TextStyle(color: Colors.blue.withOpacity(0.5), fontWeight: FontWeight.bold)),
+            ],
+          ),
+          /*
+          new RichText(
+            text: new TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                new TextSpan(
+                  text: '07:00\n',
+                  style: new TextStyle(color: Colors.black.withOpacity(0.6)),
+                ),
+                new TextSpan(
+                  text: '08:30\n',
+                  style: new TextStyle(color: Colors.black.withOpacity(0.8)),
+                ),
+              ],
+            ),
+          ),
+
+          */ //RICHTEXT
+          /*
+          new Column(
+            children: [
+              new Text('07:00'),
+              new Text('08:30'),
+            ],
+          ),
+          */
+          //*/
+          title: new Text('${item.value}', style: new TextStyle(fontWeight: FontWeight.bold),),
           /*new Row(
             children: [
               new Text('This item represents ${item.value}.'),
@@ -560,17 +593,9 @@ class _MyListDemoState extends State<MyHomePage> {
             ],
           ),*/
 
-          subtitle: secondary,
+          subtitle: new Text("${item.value}'s description goes here. This is dummy text to show that we can fill descriptions."),//secondary,
 
-          secondary: //const Icon(Icons.drag_handle),
-            new Column(
-              children: [
-                new Text('07:00'),
-
-                new Text('08:30'),
-              ],
-            ),
-
+          trailing: new Icon(Icons.drag_handle, color:Colors.blue.withOpacity(0.2),),
         );
         break;
       case _ReorderableListType.horizontalAvatar:
