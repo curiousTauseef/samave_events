@@ -2,22 +2,18 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:async';
 
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+//import 'dart:async';
+
+//import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
+//import 'package:flutter/scheduler.dart' show timeDilation;
 
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
-import 'demos.dart';
-import 'home.dart';
-import 'options.dart';
-import 'scales.dart';
-import 'themes.dart';
-import 'updater.dart';
 
+/*
 class GalleryApp extends StatefulWidget {
   const GalleryApp({
     Key key,
@@ -39,7 +35,9 @@ class GalleryApp extends StatefulWidget {
   @override
   _GalleryAppState createState() => new _GalleryAppState();
 }
+*/
 
+/*
 class _GalleryAppState extends State<GalleryApp> {
   GalleryOptions _options;
   Timer _timeDilationTimer;
@@ -145,12 +143,11 @@ class _GalleryAppState extends State<GalleryApp> {
     );
   }
 }
-
-/*
-************************************************
-Trying To Call Reorderable List directly
-************************************************
 */
+
+//************************************************
+//Trying To Call Reorderable List directly
+//************************************************
 
 enum _ReorderableListType {
   /// A list tile that contains a [CircleAvatar].
