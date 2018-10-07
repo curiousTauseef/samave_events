@@ -1,0 +1,47 @@
+PODS:
+  - connectivity (0.0.1):
+    - Flutter
+    - Reachability
+  - device_info (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - Reachability (3.2)
+  - url_launcher (0.0.1):
+    - Flutter
+  - video_player (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - connectivity (from `/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-0.3.1/ios`)
+  - device_info (from `/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/device_info-0.2.1/ios`)
+  - Flutter (from `/Users/krishnatejasalimeda/mdata/flutter/bin/cache/artifacts/engine/ios-release`)
+  - url_launcher (from `/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-3.0.3/ios`)
+  - video_player (from `/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.6.4/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Reachability
+
+EXTERNAL SOURCES:
+  connectivity:
+    :path: "/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-0.3.1/ios"
+  device_info:
+    :path: "/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/device_info-0.2.1/ios"
+  Flutter:
+    :path: "/Users/krishnatejasalimeda/mdata/flutter/bin/cache/artifacts/engine/ios-release"
+  url_launcher:
+    :path: "/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-3.0.3/ios"
+  video_player:
+    :path: "/Users/krishnatejasalimeda/mdata/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.6.4/ios"
+
+SPEC CHECKSUMS:
+  connectivity: d5992e3758d68b1c4b12d6e012fe0813f1aa1645
+  device_info: 76ce0b32e13034d1883be4a382433648f9dcee63
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  url_launcher: 92b89c1029a0373879933c21642958c874539095
+  video_player: 906796a841943c8d370ac7c13b18039aa9b56498
+
+PODFILE CHECKSUM: 045a0a689cbd9f4e01dfa664722c09bd489d05de
+
+COCOAPODS: 1.5.3

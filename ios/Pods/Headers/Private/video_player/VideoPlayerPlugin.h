@@ -1,0 +1,1 @@
+../../../../../../../../mdata/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.6.4/ios/Classes/VideoPlayerPlugin.h
